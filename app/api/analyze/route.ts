@@ -172,7 +172,6 @@
 //   }
 // }
 
-
 import { NextResponse } from "next/server";
 // Fix textstat import
 import * as textstatModule from "textstat";
@@ -180,13 +179,6 @@ const textstat = textstatModule;
 import { callOpenAIApi } from "@/app/lib/openai-api";
 // Create custom pdf-parser to avoid ENOENT error
 import { parsePdf } from "@/app/lib/pdf-parser";
-
-// Type declaration for text-readability (inline fix)
-declare module 'text-readability' {
-  export function fleschKincaidGrade(text: string): number;
-}
-
-import rs from 'text-readability';
 
 // Export AnalysisResult interface for use in other files
 export interface AnalysisResult {
@@ -197,6 +189,16 @@ export interface AnalysisResult {
   actionVerbFeedback: Array<{ bullet: string; feedback: string }>;
   readabilityScore: number;
   grammarIssues: string[];
+}
+
+// Simple readability calculator (fallback)
+function calculateReadabilityScore(text: string): number {
+  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+  const words = text.split(/\s+/).filter(w => w.trim().length > 0);
+  const avgWordsPerSentence = words.length / sentences.length;
+  
+  // Simple approximation: higher words per sentence = higher grade level
+  return Math.min(Math.max(avgWordsPerSentence * 0.5, 1), 12);
 }
 
 export async function POST(request: Request) {
@@ -266,10 +268,10 @@ export async function POST(request: Request) {
       atsIssues.push("Missing email in 'Contact Info' section.");
     }
 
-    // ✅ Readability score (Flesch-Kincaid)
+    // ✅ Readability score using simple calculation
     let readabilityScore = 0;
     try {
-      readabilityScore = rs.fleschKincaidGrade(resumeText);
+      readabilityScore = calculateReadabilityScore(resumeText);
       console.log("Readability score:", readabilityScore);
     } catch (error) {
       console.error("Readability score error:", error);
