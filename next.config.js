@@ -3,7 +3,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-
   experimental: {
     serverActions: {
       bodySizeLimit: '5mb', // Increase to 5 MB to handle larger PDFs
@@ -11,4 +10,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
