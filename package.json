@@ -9,19 +9,32 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
+    "@clerk/nextjs": "^6.28.1",
+    "@prisma/client": "^6.13.0",
+    "@textlint/textlint-plugin-markdown": "^15.2.1",
+    "lucide-react": "^0.536.0",
+    "next": "15.4.5",
+    "next-auth": "^4.24.11",
+    "openai": "^5.11.0",
+    "pdf-parse": "^1.1.1",
+    "pdf2json": "^3.2.0",
+    "prisma": "^6.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.5"
+    "text-readability": "^1.1.1",
+    "textstat": "^0.8.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
