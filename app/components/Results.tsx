@@ -400,7 +400,7 @@ const Results: React.FC<ResultsProps> = ({ analysis }) => {
                     <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                       <div className="mb-3">
                         <p className="text-sm font-medium text-gray-700 mb-1">Original Bullet Point:</p>
-                        <p className="text-gray-900 bg-gray-100 p-2 rounded italic">"{item.bullet}"</p>
+                        <p className="text-gray-900 bg-gray-100 p-2 rounded italic">{item.bullet}</p>
                       </div>
                       <div>
                         <p className="text-sm font-medium text-blue-700 mb-1">💡 Improvement Suggestion:</p>
